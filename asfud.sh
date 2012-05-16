@@ -26,7 +26,7 @@ while inotifywait -e close_write $WATCH_DIR; do
   if [ "$NOTIFY" != "" ] ; then
     notify-send "Screenshot upload" "Link copied to clipboard\n$URL"
   fi
-  
+  rm $LOCAL_FILE
 done
 
 IFS=$SAVEIFS
