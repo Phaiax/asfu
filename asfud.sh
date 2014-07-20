@@ -20,7 +20,8 @@ while inotifywait -e close_write $WATCH_DIR; do
   FILE_WITHOUT_SPACES=$(echo $FILE | sed 's/ //g')
   sleep 1
   LOCAL_FILE=$WATCH_DIR$FILE
-  scp$IFS$LOCAL_FILE$IFS$SSH_PATH$FILE_WITHOUT_SPACES
+  chmod 644 $LOCAL_FILE
+  scp$IFS-p$IFS$LOCAL_FILE$IFS$SSH_PATH$FILE_WITHOUT_SPACES
   URL=$URL_BASE$FILE_WITHOUT_SPACES
   echo $URL | xclip -i -selection clipboard
   if [ "$NOTIFY" != "" ] ; then
